@@ -35,7 +35,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
     
 # ---------------- added code here -------------------------#
-import scr.models as models
+import src.models as models
 #------------------------------------------------------------#
 
 target_metadata = models.Base.metadata
