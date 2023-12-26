@@ -35,10 +35,12 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
     
 # ---------------- added code here -------------------------#
-import src.models as models
-#------------------------------------------------------------#
+from src.auth import models as auth_models
+from src import models as other_models
+# ----------------------------------------------------------#
+# Use the target metadata from the desired module
+target_metadata = other_models.Base.metadata
 
-target_metadata = models.Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

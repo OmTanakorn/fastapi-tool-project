@@ -2,9 +2,11 @@
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
+from src.database import Base
+# Base = declarative_base()
 
-# Create a base class for SQLAlchemy models
-Base = declarative_base()
+
+
 
 # Example SQLAlchemy model
 class Item(Base):

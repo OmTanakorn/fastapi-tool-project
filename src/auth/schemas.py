@@ -6,3 +6,9 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: str | None = None
+    
+class UserBase(BaseModel):
+    username: str
+
+class UserCreate(UserBase):
+    password: str
