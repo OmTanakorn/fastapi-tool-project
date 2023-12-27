@@ -3,7 +3,7 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from src.auth import service
-from src.config import settings
+from src.auth.config import auth_config
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -13,4 +13,4 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    return service.get_current_user(token, credentials_exception, settings)
+    return service.get_current_user(token, credentials_exception, auth_config)
