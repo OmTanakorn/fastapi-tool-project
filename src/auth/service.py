@@ -1,13 +1,13 @@
-# src/auth/service.py
-
+# ------------------------------ Lib -------------------------------------- #
 from datetime import datetime, timedelta
-
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
+
+# ------------------------------ from app --------------------------------- #
 from src.database import SessionLocal
 from src.auth import models
-from src.auth.schemas import UserCreate, UserBase
+from src.auth.schemas import  Permission
 from src.auth.config import auth_config
 from src.auth.utils import verify_password, hashed_password
 
@@ -39,10 +39,11 @@ def create_access_token(data: dict):
     encoded_jwt = jwt.encode(to_encode, auth_config.SECRET_KEY, algorithm=auth_config.ALGORITHM)
     return encoded_jwt
 
-def create_user(db: SessionLocal, username: str, password: str) -> models.User:
-    user_in = UserCreate(username=username, password=hashed_password(password))
-    user = models.User(**user_in.dict())
+def create_user(db: SessionLocal, username: str, password: str, permission: int):
+    user = models.User(username=username, password=password, permission=permission)
     db.add(user)
     db.commit()
     db.refresh(user)
     return user
+
+

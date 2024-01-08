@@ -1,6 +1,6 @@
-# src/auth/utils.py
-
+# ------------------------------ Lib -------------------------------------- #
 from passlib.context import CryptContext
+from enum import Enum as PyEnum
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
